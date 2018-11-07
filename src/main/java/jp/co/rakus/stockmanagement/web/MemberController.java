@@ -58,6 +58,12 @@ public class MemberController {
 			return form(model);
 		}
 		
+		if(memberService.findMailAddress(form.getMailAddress())!=null){
+			result.rejectValue("mailAddress", null , "既に登録されています");
+
+			return form(model);
+		}
+		
 		Member member = new Member();
 		BeanUtils.copyProperties(form, member);
 		memberService.save(member);

@@ -40,4 +40,8 @@ public class MemberService {
 //	public void delete(Integer id){
 //		memberRepository.delete(id);
 //	}
+	
+	public Member findMailAddress(String mailAddress) {
+		return memberRepository.findMailAddress(mailAddress);
+	}
 }

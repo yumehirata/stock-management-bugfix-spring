@@ -22,7 +22,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="mailAddress" cssStyle="color:red" element="div"/>
-			    	<form:input path="mailAddress" placeholder="Email"/>
+			    	<form:input path="mailAddress" placeholder="Email" value="${mailAddress}"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -31,7 +31,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="password" cssStyle="color:red" element="div"/>
-			    	<form:password path="password" placeholder="Password"/>
+			    	<form:password path="password" placeholder="Password" value="${password}"/>
 			    </td>
 			  </tr>
 			  <tr>

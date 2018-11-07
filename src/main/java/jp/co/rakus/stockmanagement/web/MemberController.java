@@ -61,7 +61,7 @@ public class MemberController {
 		Member member = new Member();
 		BeanUtils.copyProperties(form, member);
 		memberService.save(member);
-		return "redirect:/index";
+		return "forward:/index";
 	}
 	
 }

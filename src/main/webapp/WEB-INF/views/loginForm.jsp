@@ -34,7 +34,7 @@
 			  </tr>
 			</table>
 		  </form:form>
-		  <a href="/member/form" id="toInsertMember">メンバー登録はこちらから</a>
+		  <a href="${pageContext.request.contextPath}/member/form" id="toInsertMember">メンバー登録はこちらから</a>
 		</div>
 	</div>
 </div>

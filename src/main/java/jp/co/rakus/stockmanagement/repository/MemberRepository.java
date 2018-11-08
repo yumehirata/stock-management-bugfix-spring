@@ -87,16 +87,14 @@ public class MemberRepository {
 	 */
 	public Member findMailAddress(String mailAddress) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress);
-		Member member = null;
-		List<Member> memberList = null;
-		memberList = jdbcTemplate.query(
+		List<Member> memberList = jdbcTemplate.query(
 				"SELECT id,name,mail_address,password FROM members WHERE mail_address=:mailAddress", param,
 				MEMBER_ROW_MAPPER);
 
 		if (memberList.size() == 0) {
 			return null;
 		}
-		member = memberList.get(0);
+		Member member = memberList.get(0);
 
 		return member;
 	}

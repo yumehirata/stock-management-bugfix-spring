@@ -61,12 +61,12 @@ public class MemberController {
 	@RequestMapping(value = "create")
 	public String create(@Validated MemberForm form, BindingResult result, Model model) {
 
-		if (memberService.findMailAddress(form.getMailAddress()) != null) {
+		if (existMailAddress(form)) {
 			result.rejectValue("mailAddress", null, "既に登録されています");
 
 		}
 
-		if (!(form.getPassword().equals(form.getConfirmPassword()))) {
+		if (confirmPassword(form)) {
 			result.rejectValue("confirmPassword", null, "パスワードが一致しません");
 
 		}
@@ -79,6 +79,14 @@ public class MemberController {
 		BeanUtils.copyProperties(form, member);
 		memberService.save(member);
 		return "redirect:/";
+	}
+
+	private boolean confirmPassword(MemberForm form) {
+		return !(form.getPassword().equals(form.getConfirmPassword()));
+	}
+
+	private boolean existMailAddress(MemberForm form) {
+		return memberService.findMailAddress(form.getMailAddress()) != null;
 	}
 
 }

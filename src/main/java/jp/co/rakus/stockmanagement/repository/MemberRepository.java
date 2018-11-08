@@ -1,6 +1,5 @@
 package jp.co.rakus.stockmanagement.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,31 +78,25 @@ public class MemberRepository {
 		return member;
 	}
 
-	
 	/**
 	 * メールアドレスの重複を調べる.
 	 * 
-	 * @param mailAddress	入力されたメールアドレス
-	 * @return	検索されたメンバーを返す
+	 * @param mailAddress
+	 *            入力されたメールアドレス
+	 * @return 検索されたメンバーを返す
 	 */
 	public Member findMailAddress(String mailAddress) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress);
-		Member member = new Member();
-		List<Member> memberList = new ArrayList<>();
-		try {
-			memberList = jdbcTemplate.query(
-					"SELECT id,name,mail_address,password FROM members WHERE mail_address=:mailAddress", param,
-					MEMBER_ROW_MAPPER);
-			
-			if(memberList.size()==0) {
-				return null;
-			}
-			
-			return member;
-		} catch (DataAccessException e) {
-			e.printStackTrace();
+		Member member = null;
+		List<Member> memberList = null;
+		memberList = jdbcTemplate.query(
+				"SELECT id,name,mail_address,password FROM members WHERE mail_address=:mailAddress", param,
+				MEMBER_ROW_MAPPER);
 
+		if (memberList.size() == 0) {
 			return null;
 		}
+
+		return member;
 	}
 }

@@ -96,6 +96,7 @@ public class MemberRepository {
 		if (memberList.size() == 0) {
 			return null;
 		}
+		member = memberList.get(0);
 
 		return member;
 	}

@@ -20,6 +20,8 @@ public class MemberForm {
 	/** パスワード */
 	@NotBlank(message = "パスワードを入力してください")
 	private String password;
+	/** 確認用パスワード */
+	private String confirmPassword;
 
 	public String getName() {
 		return name;
@@ -43,5 +45,13 @@ public class MemberForm {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 }

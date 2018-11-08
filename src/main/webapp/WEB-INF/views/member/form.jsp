@@ -35,6 +35,16 @@
 			    </td>
 			  </tr>
 			  <tr>
+			   <tr>
+			    <th>
+			     	 パスワード確認（再入力）
+			    </th>
+			    <td>
+			    	<form:errors path="confirmPassword" cssStyle="color:red" element="div"/>
+			    	<form:password path="confirmPassword" placeholder="confirmPassword"/>
+			    </td>
+			  </tr>
+			  <tr>
 			  	<td></td>
 			    <td>
 					<input class="btn" type="submit" value="登録">

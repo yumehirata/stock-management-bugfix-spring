@@ -18,7 +18,7 @@
 			    </th>
 			    <td>
 					<form:errors path="name" cssStyle="color:red" element="div"/>
-			    	<form:input path="name"/>
+			    	<form:input path="name" placeholder="書籍名"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -27,7 +27,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="author" cssStyle="color:red" element="div"/>
-			        <form:input path="author"/>
+			        <form:input path="author" placeholder="著者名"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -36,7 +36,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="publisher" cssStyle="color:red" element="div"/>
-			      	<form:input path="publisher"/>
+			      	<form:input path="publisher" placeholder="出版社名"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -45,7 +45,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="price" cssStyle="color:red" element="div"/>
-			        <form:input path="price"/>
+			        <form:input path="price" placeholder="価格（数字で入力）"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -54,7 +54,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="isbncode" cssStyle="color:red" element="div"/>
-			       	<form:input path="isbncode"/>
+			       	<form:input path="isbncode" placeholder="ISBNコード　例：1-1111-1111-1"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -63,7 +63,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="saledate" cssStyle="color:red" element="div"/>
-			       <form:input path="saledate"/>
+			       <form:input path="saledate" placeholder="発売日　例:2000-01-01"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -72,7 +72,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="explanation" cssStyle="color:red" element="div"/>
-			        <form:textarea path="explanation"/>
+			        <form:textarea path="explanation" placeholder="書籍に関する説明"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -89,7 +89,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="stock" cssStyle="color:red" element="div"/>
-					<form:input path="stock"/>
+					<form:input path="stock" placeholder="在庫数（数値で入力）"/>
 			    </td>
 			  </tr>
 			  <tr>

@@ -33,7 +33,7 @@ public class BookResisterForm {
 	private String isbncode;
 	/** 発売日 */
 	@NotBlank(message = "発売日を入力してください")
-	@Pattern(regexp="^\\d{4}-\\d{1,2}-\\d{1,2}$", message="2000-01-01のような形式で入力してください")
+	@Pattern(regexp="^\\d{4}-\\d{2}-\\d{2}$", message="2000-01-01のような形式で入力してください")
 	private String saledate;
 	/** 説明 */
 	@NotBlank(message = "説明を入力してください")

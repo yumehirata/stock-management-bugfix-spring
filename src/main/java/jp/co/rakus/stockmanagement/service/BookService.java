@@ -47,17 +47,28 @@ public class BookService {
 		return bookRepository.insert(book);
 	}
 
-	public Integer newSetId() {
+	/**
+	 * 新規ID用にDB上の最大IDに1を足して返す.
+	 * 
+	 * @return	新規登録用書籍ID
+	 */
+	public Integer getNewId() {
 		Integer maxId = bookRepository.maxId();
 
 		if (maxId == null) {
-			Integer newSetId = 1;
-			return newSetId;
+			Integer getNewId = 1;
+			return getNewId;
 		}
-		Integer newSetId = maxId + 1;
-		return newSetId;
+		Integer getNewId = maxId + 1;
+		return getNewId;
 	}
 
+	/**
+	 * DBにインサートするためにDate型からString型に変換する.
+	 * 
+	 * @param saledate	フォームに入力された発売日を表す文字列
+	 * @return	Date型に変換された発売日情報
+	 */
 	public Date stringToDate(String saledate) {
 		Date saleDate = null;
 		try {

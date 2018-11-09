@@ -124,15 +124,20 @@ public class BookController {
 
 		Book book = new Book();
 		BeanUtils.copyProperties(form, book);
-		book.setId(bookService.newSetId());
+		book.setId(bookService.getNewId());
 		book.setSaledate(bookService.stringToDate(form.getSaledate()));
-		
 		book.setImage(fileName);
 		bookService.insert(book);
 
 		return "forward:/book/list";
 	}
 
+	/**
+	 * 新規登録用ページを表示する.
+	 * 
+	 * @param model	エラー表示時用の変数
+	 * @return	新規登録用ページ
+	 */
 	@RequestMapping(value = "toInsert")
 	public String toInsert(Model model) {
 		return "book/insert";

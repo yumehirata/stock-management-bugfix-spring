@@ -28,17 +28,18 @@ public class BookResisterForm {
 	@NotNull(message = "値を入力してください")
 	private Integer price;
 	/** ISBNコード */
-	@NotBlank(message="ISBNコードを入力してください")
+	@NotBlank(message = "ISBNコードを入力してください")
 	@Pattern(regexp = "^\\d{1}-\\d{4}-\\d{4}-\\d{1}$", message = "ハイフンを入れたISBNコードの形式で入力してください")
 	private String isbncode;
 	/** 発売日 */
 	@NotBlank(message = "発売日を入力してください")
-	@Pattern(regexp="^\\d{4}-\\d{2}-\\d{2}$", message="2000-01-01のような形式で入力してください")
+	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "2000-01-01のような形式で入力してください")
 	private String saledate;
 	/** 説明 */
 	@NotBlank(message = "説明を入力してください")
 	private String explanation;
 	/** 画像 */
+	@NotNull(message = "画像を選択してください")
 	private MultipartFile imageFile;
 	/** 在庫数 */
 	@NotNull(message = "在庫数を入力してください")

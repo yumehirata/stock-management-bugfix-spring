@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * booksテーブル操作用のリポジトリクラス.
+ * 
  * @author igamasayuki
  */
 @Repository
@@ -35,72 +36,79 @@ public class BookRepository {
 		Integer stock = rs.getInt("stock");
 		return new Book(id, name, author, publisher, price, isbncode, saledate, explanation, image, stock);
 	};
-	
+
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	
+
+	/**
+	 * 書籍一覧表示のための全件検索.
+	 * 
+	 * @return 書籍情報のリスト
+	 */
 	public List<Book> findAll() {
 		List<Book> books = jdbcTemplate.query(
-				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books ORDER BY name", 
+				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books ORDER BY name",
 				BOOK_ROW_MAPPER);
 		return books;
 	}
-	
+
+	/**
+	 * IDによる書籍検索.
+	 * 
+	 * @param id
+	 *            検索キーとなる書籍ID
+	 * @return 検索された書籍のオブジェクト
+	 */
 	public Book findOne(Integer id) {
-		SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("id",id);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Book book = jdbcTemplate.queryForObject(
-				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books WHERE id=:id", 
-				param, 
-				BOOK_ROW_MAPPER);
+				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books WHERE id=:id",
+				param, BOOK_ROW_MAPPER);
 		return book;
 	}
-	
+
 	/**
 	 * 書籍の在庫数をアップデートする.
 	 * 
-	 * @param book	反映させる書籍情報
-	 * @return	反映させた書籍情報
+	 * @param book
+	 *            反映させる書籍情報
+	 * @return 反映させた書籍情報
 	 */
 	public Book update(Book book) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
 		if (book.getId() == null) {
 			throw new NullPointerException();
-		} 
-		jdbcTemplate.update(
-				"UPDATE books SET stock=:stock WHERE id=:id",
-				param);
+		}
+		jdbcTemplate.update("UPDATE books SET stock=:stock WHERE id=:id", param);
 		return book;
 	}
-	
-	
-	
+
 	/**
 	 * 新規書籍を一覧に追加する.
 	 * 
-	 * @param book	新規追加する書籍情報
-	 * @return	追加した書籍情報
+	 * @param book
+	 *            新規追加する書籍情報
+	 * @return 追加した書籍情報
 	 */
 	public Book insert(Book book) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
-		jdbcTemplate.update("INSERT INTO books(id,name,author,publisher,price,isbncode,saledate,explanation,image,stock)"
-				+ " VALUES(:id,:name,:author,:publisher,:price,:isbncode,:saledate,:explanation,:image,:stock)", param);
-		
+		jdbcTemplate.update(
+				"INSERT INTO books(id,name,author,publisher,price,isbncode,saledate,explanation,image,stock)"
+						+ " VALUES(:id,:name,:author,:publisher,:price,:isbncode,:saledate,:explanation,:image,:stock)",
+				param);
+
 		return book;
 	}
-	
+
 	/**
 	 * DB上のIDの最大値を検索する.
 	 * 
-	 * @return	IDの最大値
+	 * @return IDの最大値
 	 */
 	public Integer maxId() {
-		SqlParameterSource param = new MapSqlParameterSource();		
+		SqlParameterSource param = new MapSqlParameterSource();
 		Integer maxId = jdbcTemplate.queryForObject("SELECT max(id) FROM books;", param, Integer.class);
-		
-		if(maxId == null) {
-			return null;
-		}
+
 		return maxId;
 	}
 }

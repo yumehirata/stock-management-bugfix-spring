@@ -80,7 +80,8 @@
 			      画像
 			    </th>
 			    <td>
-			       <input type="file" name="imageFile" accept="image/*" multiple>
+			   		<form:errors path="imageFile" cssStyle="color:red" element="div"/>
+			      	<input type="file" name="imageFile" accept="image/*" multiple>
 			    </td>
 			  </tr>
 			  <tr>

@@ -56,6 +56,12 @@ public class BookRepository {
 		return book;
 	}
 	
+	/**
+	 * 書籍の在庫数をアップデートする.
+	 * 
+	 * @param book	反映させる書籍情報
+	 * @return	反映させた書籍情報
+	 */
 	public Book update(Book book) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
 		if (book.getId() == null) {
@@ -65,5 +71,36 @@ public class BookRepository {
 				"UPDATE books SET stock=:stock WHERE id=:id",
 				param);
 		return book;
+	}
+	
+	
+	
+	/**
+	 * 新規書籍を一覧に追加する.
+	 * 
+	 * @param book	新規追加する書籍情報
+	 * @return	追加した書籍情報
+	 */
+	public Book insert(Book book) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
+		jdbcTemplate.update("INSERT INTO books(id,name,author,publisher,price,isbncode,saledate,explanation,image,stock)"
+				+ " VALUES(:id,:name,:author,:publisher,:price,:isbncode,:saledate,:explanation,:image,:stock)", param);
+		
+		return book;
+	}
+	
+	/**
+	 * DB上のIDの最大値を検索する.
+	 * 
+	 * @return	IDの最大値
+	 */
+	public Integer maxId() {
+		SqlParameterSource param = new MapSqlParameterSource();		
+		Integer maxId = jdbcTemplate.queryForObject("SELECT max(id) FROM books;", param, Integer.class);
+		
+		if(maxId == null) {
+			return null;
+		}
+		return maxId;
 	}
 }

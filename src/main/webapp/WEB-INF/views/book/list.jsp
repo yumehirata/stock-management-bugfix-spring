@@ -21,7 +21,8 @@
 			  </tr>
 			  </c:forEach>
 			</table>
-
+			
+			<a href="${pageContext.request.contextPath}/book/toInsert">書籍情報を新規登録する</a>
 
 		</div>
 	</div>
